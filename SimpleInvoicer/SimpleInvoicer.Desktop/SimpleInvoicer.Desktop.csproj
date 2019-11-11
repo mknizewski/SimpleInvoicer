@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -93,6 +94,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleInvoicer.Application\SimpleInvoicer.Application.csproj">
+      <Project>{c4ecb4d2-3438-4844-b150-85acb171c487}</Project>
+      <Name>SimpleInvoicer.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleInvoicer.Domain\SimpleInvoicer.Domain.csproj">
+      <Project>{306411c3-03dd-42ae-a451-d4edaa722379}</Project>
+      <Name>SimpleInvoicer.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

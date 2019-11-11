@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInvoicer.Desktop", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInvoicer.Domain", "SimpleInvoicer.Domain\SimpleInvoicer.Domain.csproj", "{306411C3-03DD-42AE-A451-D4EDAA722379}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInvoicer.Application", "SimpleInvoicer.Application\SimpleInvoicer.Application.csproj", "{C4ECB4D2-3438-4844-B150-85ACB171C487}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{306411C3-03DD-42AE-A451-D4EDAA722379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{306411C3-03DD-42AE-A451-D4EDAA722379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{306411C3-03DD-42AE-A451-D4EDAA722379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4ECB4D2-3438-4844-B150-85ACB171C487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4ECB4D2-3438-4844-B150-85ACB171C487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4ECB4D2-3438-4844-B150-85ACB171C487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4ECB4D2-3438-4844-B150-85ACB171C487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
