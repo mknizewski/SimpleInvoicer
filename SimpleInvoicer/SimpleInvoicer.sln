@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInvoicer.Desktop", "SimpleInvoicer.Desktop\SimpleInvoicer.Desktop.csproj", "{95ADBDD9-293D-4572-BCDE-4A0B3AC74F18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInvoicer.Domain", "SimpleInvoicer.Domain\SimpleInvoicer.Domain.csproj", "{306411C3-03DD-42AE-A451-D4EDAA722379}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95ADBDD9-293D-4572-BCDE-4A0B3AC74F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95ADBDD9-293D-4572-BCDE-4A0B3AC74F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95ADBDD9-293D-4572-BCDE-4A0B3AC74F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95ADBDD9-293D-4572-BCDE-4A0B3AC74F18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{306411C3-03DD-42AE-A451-D4EDAA722379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{306411C3-03DD-42AE-A451-D4EDAA722379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{306411C3-03DD-42AE-A451-D4EDAA722379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{306411C3-03DD-42AE-A451-D4EDAA722379}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81F3A79E-75AA-4162-A2BB-E0039CDE481E}
+	EndGlobalSection
+EndGlobal
