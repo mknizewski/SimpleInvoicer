@@ -3,21 +3,33 @@ using SimpleInvoicer.Application.Factory;
 using SimpleInvoicer.Application.Services;
 using SimpleInvoicer.Domain.Models;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 
 namespace SimpleInvoicer.Desktop
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private const string PolishCulture = "pl-PL";
-        private const string SaveDialogExtensionFilter = "Plik PDF (*.pdf)|*.pdf";
+        private const string SaveDialogExtensionFilter = "Plik PDF (*.pdf)|*.pdf|Plik Json (*.json)|*.json";
 
         private readonly IInvoiceService _invoiceService;
         private readonly IItemService _itemService;
 
-        public Invoice Invoice { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private Invoice _invoice;
+        public Invoice Invoice 
+        {
+            get => _invoice; 
+            set
+            {
+                _invoice = value;
+                OnPropertyChanged(nameof(Invoice));
+            }
+        }
 
         public MainWindow()
         {
@@ -55,7 +67,8 @@ namespace SimpleInvoicer.Desktop
             {
                 var saveFileDialog = new SaveFileDialog
                 {
-                    Filter = SaveDialogExtensionFilter
+                    Filter = SaveDialogExtensionFilter,
+                    FileName = _invoiceService.GetDefaultFilePath(Invoice),
                 };
 
                 if (saveFileDialog.ShowDialog().GetValueOrDefault())
@@ -91,6 +104,59 @@ namespace SimpleInvoicer.Desktop
                 BusyIndi.Visibility = Visibility.Collapsed;
                 GenerateInvoice.Visibility = Visibility.Visible;
             }
+        }
+
+        private void InvoiceGrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (!(InvoiceGrid.SelectedItem is Item item))
+                return;
+
+            _itemService.CalulateItem(item);
+            _invoiceService.CalulateTotalPrice(Invoice);        
+        }
+
+        private void ExportInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = SaveDialogExtensionFilter
+                };
+
+                if (saveFileDialog.ShowDialog().GetValueOrDefault())
+                    _invoiceService.SaveInvoiceToFile(Invoice, saveFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void ImportInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var openFileDialog = new OpenFileDialog
+                {
+                    Filter = SaveDialogExtensionFilter
+                };
+
+                if (openFileDialog.ShowDialog().GetValueOrDefault())
+                {
+                    Invoice = _invoiceService.LoadInvoiceFromFile(openFileDialog.FileName);
+                    DataContext = Invoice;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

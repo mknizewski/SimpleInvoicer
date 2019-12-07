@@ -122,6 +122,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\invoice-function.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\invoice-template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

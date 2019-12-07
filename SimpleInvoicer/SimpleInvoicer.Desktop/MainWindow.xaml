@@ -45,7 +45,8 @@
             <DockPanel Grid.Row="0">
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="Plik">
-                        <MenuItem Header="_TODO" IsCheckable="False" />
+                        <MenuItem Header="Import" Click="ImportInvoice_Click" />
+                        <MenuItem Header="Export" Click="ExportInvoice_Click" />
                         <Separator />
                         <MenuItem Header="Wyjście" />
                     </MenuItem>
@@ -298,7 +299,8 @@
                         x:Name="InvoiceGrid"
                         GridLinesVisibility="None"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch"
+                        CurrentCellChanged="InvoiceGrid_CurrentCellChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="L.p" IsReadOnly="True" Binding="{Binding Path=Order, Mode=TwoWay}" />
                             <DataGridTemplateColumn Header="Nazwa towaru/usługi">
@@ -347,24 +349,24 @@
                             <DataGridTemplateColumn Header="Cena netto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Path=Price, Mode=TwoWay}" />
+                                        <TextBlock Text="{Binding Path=Price, Mode=TwoWay, StringFormat={}{0:F2}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                                 <DataGridTemplateColumn.CellEditingTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Path=Price, Mode=TwoWay}" />
+                                        <TextBox Text="{Binding Path=Price, Mode=TwoWay, StringFormat={}{0:F2}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTemplateColumn Header="Wartość netto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Path=Value, Mode=TwoWay}" />
+                                        <TextBlock Text="{Binding Path=Value, Mode=TwoWay, StringFormat={}{0:F2}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                                 <DataGridTemplateColumn.CellEditingTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Path=Value, Mode=TwoWay}" />
+                                        <TextBox Text="{Binding Path=Value, Mode=TwoWay, StringFormat={}{0:F2}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
@@ -390,24 +392,24 @@
                             <DataGridTemplateColumn Header="Kwota VAT">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Path=TaxAmmount, Mode=OneTime}" />
+                                        <TextBlock Text="{Binding Path=TaxAmmount, Mode=TwoWay, StringFormat={}{0:F2}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                                 <DataGridTemplateColumn.CellEditingTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Path=TaxAmmount, Mode=TwoWay}" IsReadOnly="True" />
+                                        <TextBox Text="{Binding Path=TaxAmmount, Mode=TwoWay, StringFormat={}{0:F2}}" IsReadOnly="True" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTemplateColumn Header="Wartość brutto">
                                 <DataGridTemplateColumn.CellEditingTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Path=ValueGross, Mode=TwoWay}" />
+                                        <TextBox Text="{Binding Path=ValueGross, Mode=TwoWay, StringFormat={}{0:F2}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Path=ValueGross, Mode=TwoWay}" />
+                                        <TextBlock Text="{Binding Path=ValueGross, Mode=TwoWay, StringFormat={}{0:F2}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -447,7 +449,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Text="Do zapłaty: " Width="125" Margin="15 0 0 0" FontSize="24" />
-                    <TextBlock Grid.Column="1" FontSize="24" Text="{Binding Path=AmmountGross, Mode=TwoWay}" />
+                    <TextBlock Grid.Column="1" FontSize="24" Text="{Binding Path=AmmountGross, Mode=TwoWay, StringFormat={}{0:F2}}" />
                     <TextBlock Grid.Column="2" FontSize="24" Text=" PLN" />
                 </Grid>
             </Grid>

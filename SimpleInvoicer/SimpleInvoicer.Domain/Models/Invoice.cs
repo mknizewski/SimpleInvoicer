@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace SimpleInvoicer.Domain.Models
 {
-    public class Invoice
+    [Serializable]
+    public class Invoice : INotifyPropertyChanged
     {
+        private decimal _amountGross;
+
         public string Number { get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime PaymentDate { get; set; }
@@ -14,6 +18,20 @@ namespace SimpleInvoicer.Domain.Models
         public Bank Bank { get; set; }
         public PaymentForm PaymentForm { get; set; }
         public List<Item> Items { get; set; }
-        public decimal AmmountGross { get; set; }
+        public decimal AmmountGross 
+        {
+            get => _amountGross;
+            set
+            {
+                _amountGross = value;
+                OnPropertyChanged(nameof(AmmountGross));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }
