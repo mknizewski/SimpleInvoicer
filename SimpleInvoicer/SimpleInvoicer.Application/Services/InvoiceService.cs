@@ -5,7 +5,6 @@ using SimpleInvoicer.Application.Factory;
 using SimpleInvoicer.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -79,7 +78,14 @@ namespace SimpleInvoicer.Application.Services
                     var result = await page.GetContentAsync();
                     await page.PdfAsync(filePath, new PdfOptions
                     {
-                        Format = PaperFormat.A4
+                        Format = PaperFormat.A4,
+                        MarginOptions = new MarginOptions
+                        {
+                            Bottom = "50",
+                            Top = "50",
+                            Right = "50",
+                            Left = "50"
+                        }
                     });
                 }
             }

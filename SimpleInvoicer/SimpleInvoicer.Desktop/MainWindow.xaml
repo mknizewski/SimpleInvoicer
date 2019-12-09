@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="Generator faktur" Height="650" Width="800"
+        Icon="pack://application:,,,/Resources/document.png"
         DataContext="{Binding Path=Invoice, Mode=TwoWay}">
     <Window.Resources>
         <converters:EnumConverter x:Key="EnumConverter" />

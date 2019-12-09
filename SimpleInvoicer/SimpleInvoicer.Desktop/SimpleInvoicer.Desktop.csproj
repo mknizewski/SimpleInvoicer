@@ -122,6 +122,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\document.png" />
     <Content Include="Resources\invoice-function.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -13,7 +13,8 @@ namespace SimpleInvoicer.Desktop
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private const string PolishCulture = "pl-PL";
-        private const string SaveDialogExtensionFilter = "Plik PDF (*.pdf)|*.pdf|Plik Json (*.json)|*.json";
+        private const string DialogPdfExtensionFilter = "Plik PDF (*.pdf)|*.pdf";
+        private const string DialogJsonExtensionFilter = "Plik JSON (*.json)|*.json";
 
         private readonly IInvoiceService _invoiceService;
         private readonly IItemService _itemService;
@@ -67,7 +68,7 @@ namespace SimpleInvoicer.Desktop
             {
                 var saveFileDialog = new SaveFileDialog
                 {
-                    Filter = SaveDialogExtensionFilter,
+                    Filter = DialogPdfExtensionFilter,
                     FileName = _invoiceService.GetDefaultFilePath(Invoice),
                 };
 
@@ -121,7 +122,7 @@ namespace SimpleInvoicer.Desktop
             {
                 var saveFileDialog = new SaveFileDialog
                 {
-                    Filter = SaveDialogExtensionFilter
+                    Filter = DialogJsonExtensionFilter
                 };
 
                 if (saveFileDialog.ShowDialog().GetValueOrDefault())
@@ -139,7 +140,7 @@ namespace SimpleInvoicer.Desktop
             {
                 var openFileDialog = new OpenFileDialog
                 {
-                    Filter = SaveDialogExtensionFilter
+                    Filter = DialogJsonExtensionFilter
                 };
 
                 if (openFileDialog.ShowDialog().GetValueOrDefault())
@@ -154,9 +155,7 @@ namespace SimpleInvoicer.Desktop
             }
         }
 
-        protected void OnPropertyChanged(string name)
-        {
+        protected void OnPropertyChanged(string name) => 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
     }
 }

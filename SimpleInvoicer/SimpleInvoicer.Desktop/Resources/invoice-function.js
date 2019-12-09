@@ -58,7 +58,10 @@
     // PAYMENT DETAILS
     var paymentDetailsDOM = document.getElementById('payment-details');
     paymentDetailsDOM.innerHTML = '';
-    if (invoice.Bank.AccountNumber !== '') {
+    if (invoice.PaymentForm === 0) {
+        var bankNameDOM = document.getElementById('bank-name');
+
+        bankNameDOM.append(invoice.Bank.Name);
         paymentDetailsDOM.append(invoice.Bank.AccountNumber);
     }
 
