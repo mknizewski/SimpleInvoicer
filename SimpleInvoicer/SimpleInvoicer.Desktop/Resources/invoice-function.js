@@ -39,12 +39,15 @@
     var reciverDOM = document.getElementById('reciver');
     reciverDOM.innerHTML = '';
     if (invoice.Reciver.Name !== null) {
+        var taxNumber = invoice.Reciver.TaxNumber !== null ?
+            "NIP: " + invoice.Reciver.TaxNumber : "";
+
         var reciver = 
-            '<b>Nabywca: </b><br />' +
+            '<b>Odbiorca: </b><br />' +
             invoice.Reciver.Name + '<br/>' +
             invoice.Reciver.AddressLine1 + '<br/>' +
             invoice.Reciver.AddressLine2 + '<br/>' +
-            'NIP: ' + invoice.Reciver.TaxNumber;
+            taxNumber;
 
         reciverDOM.insertAdjacentHTML('beforeend', reciver);
     }
@@ -87,6 +90,6 @@
 
     // TOTAL PRICE
     var totalPriceDOM = document.getElementById('total-price');
-    var totalPrice = 'Do zapłaty: <b>' + invoice.AmmountGross + 'PLN </b>';
+    var totalPrice = 'Do zapłaty: <b>' + invoice.AmmountGross.toFixed(2) + ' PLN </b>';
     totalPriceDOM.insertAdjacentHTML('beforeend', totalPrice);
 }

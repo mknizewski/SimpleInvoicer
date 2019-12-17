@@ -65,9 +65,18 @@ namespace SimpleInvoicer.Application.Services
         public async Task SaveInvoiceToPdf(Invoice invoice, string filePath)
         {
             await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
-            using (var browser = await Puppeteer.LaunchAsync(new LaunchOptions { }))
+            var lanuchOptions = new LaunchOptions
             {
-                using (var page = await browser.NewPageAsync())
+                Headless = true,
+                WebSocketFactory = new PuppeteerSharp.Transport.WebSocketFactory((uri, options, token) =>
+                {
+                    return System.Net.WebSockets.SystemClientWebSocket.ConnectAsync(uri, token);
+                })
+            };
+
+            using (var browser = await Puppeteer.LaunchAsync(lanuchOptions))
+            {
+                using (var page = await browser.NewPageAsync()) 
                 {
                     var template = _fileService.GetInvoiceTemplate();
                     var function = _fileService.GetJsFunction();
